@@ -19,7 +19,7 @@ export default function Weather() {
   }, []);
 
   if(!weather) {
-    return <p className="text-3xl text-slate-300">Loading...</p>
+    return <p className="text-3xl text-slate-300">LOADING...</p>
   }
 
    return (
