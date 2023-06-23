@@ -1,50 +1,44 @@
-// import Image from 'next/image'
-
 "use client";
 
-import Link from "next/link";
+import React, { useEffect, useState } from "react";
 import SearchBar from "./components/SearchBar";
-import { useEffect, useState } from "react";
 import { fetchData } from "@/utils/api";
+import ResultCard from "./components/ResultCard";
 import CityCard from "./components/CityCard";
-import SACard from "./components/SACard";
 
 export default function Weather() {
-  const [weatherData, setWeatherData] = useState("");
-  const [cityQuery, setCityQuery] = useState("");
+  const [weatherDataList, setWeatherDataList] = useState([]);
 
   const handleSearch = async (query) => {
-    setCityQuery(query);
+    const data = await fetchData(query);
+    setWeatherDataList((prevList) => [data, ...prevList]);
   };
 
-useEffect(() => {
-  async function fetchWeatherData() {
-    if(cityQuery) {
-      const data = await fetchData(cityQuery);
-      setWeatherData(data);
-    }
-  }
-  fetchWeatherData();
-}, [cityQuery]);
-
-   return (
-    <div>
-      <SearchBar 
-      onSearch={handleSearch}
-      className="mb-6" />
-      {weatherData ? (
-        <div>
-          <CityCard 
-          city={weatherData.location} 
-          currentWeather={weatherData.current}
-           />
-        </div>
-      ) : (
-        <p className="text-3xl text-slate-300">City Data will go here.</p>
-      )}
-      <section>
-        <SACard city="San Antonio" />
-      </section>
+  return (
+    <div className="flex flex-wrap">
+      <div className="w-full md:w-1/2">
+        <SearchBar onSearch={handleSearch} className="mb-6" />
+        {weatherDataList.length > 0 ? (
+          weatherDataList.map((weatherData, index) => (
+            <ResultCard
+              key={index}
+              city={weatherData.location}
+              currentWeather={weatherData.current}
+            />
+          ))
+        ) : (
+          <p className="text-3xl text-slate-300">City Data will go here.</p>
+        )}
+      </div>
+      <div className="w-full md:w-1/2">
+        <section className="flex flex-col space-y-4">
+          <CityCard city="San Antonio" />
+          <CityCard city="Houston" />
+          <CityCard city="Austin" />
+          <CityCard city="Laredo" />
+          <CityCard city="El Paso" />
+        </section>
+      </div>
     </div>
-  )
+  );
 }

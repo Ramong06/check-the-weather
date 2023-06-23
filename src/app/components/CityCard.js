@@ -1,15 +1,48 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-export default function City({ city, currentWeather }) {
+export default function CityCard({ city }) {
+    const accessToken = process.env.NEXT_PUBLIC_ACCESS_TOKEN;
+    const [weather, setWeather] = useState(null);
+
+    useEffect(() => {
+        const fetchWeatherData = async () => {
+          try {
+            const response = await axios.get('https://weatherapi-com.p.rapidapi.com/current.json', {
+              params: { q: city },
+              headers: {
+                'X-RapidAPI-Key': accessToken,
+                'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com',
+              },
+            });
+            setWeather(response.data);
+          } catch (error) {
+            console.error("this is broken", error);
+          }
+        };
+    
+        fetchWeatherData();
+    }, [city]);
+
+    if(!weather) {
+        return <p>LOADING...</p>
+    }
+
+    const { temp_f, wind_mph, humidity, precip_in } = weather.current;
+
     return (
-        <div className="border border-slate-300 text-slate-300 px-2 py-1 rounded hover:bg-slate-700 focus-within:bg-slate-700 outline-none">
-            <h2 className="text-slate-300 text-xl font-bold mb-2">{city.name}</h2>
-            <p className="text-slate-300 mb-1">Region: {city.region}, {city.country}</p>
-            <p className="text-slate-3000 mb-1">Local Time: {city.localtime}</p>
-            <p className="text-slate-300 mb-1">Temp: {currentWeather.temp_f}°F</p>
-            <p className="text-slate-300 mb-1">Wind: {currentWeather.wind_mph}mph</p>
-            <p className="text-slate-300 mb-1">Humidity: {currentWeather.humidity}</p>
-            <p className="text-slate-300 mb-1">Rain: {currentWeather.precip_in} in.</p>
-        </div>
-    )
+    <div className="bg-slate-400 hover:bg-slate-200 p-4 rounded-lg mb-4">
+        <h2 className="text-2xl font-semibold">{city}</h2>
+        <p className="text-lg mb-2">
+          Temperature: {temp_f}°F{" "}
+          {temp_f > 90 && <span className="text-red-500">🌡️</span>}
+        </p>
+        <p className="text-lg">
+          Precipitation: {precip_in} in{" "}
+          {precip_in > 1 && <span className="text-blue-500">☁️</span>}
+        </p>
+        <p className="text-lg">Wind: {wind_mph} mph</p>
+        <p className="text-lg">Humidity: {humidity}%</p>
+    </div>
+    );
 }
