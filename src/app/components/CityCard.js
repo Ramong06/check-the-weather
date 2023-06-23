@@ -31,7 +31,7 @@ export default function CityCard({ city }) {
     const { temp_f, wind_mph, humidity, precip_in } = weather.current;
 
     return (
-    <div className="bg-slate-400 hover:bg-slate-200 p-4 rounded-lg mb-4">
+    <div className="bg-slate-400 hover:bg-slate-800 hover:border border-slate-400 col-span-2 p-4 rounded-lg mb-4">
         <h2 className="text-2xl font-semibold">{city}</h2>
         <p className="text-lg mb-2">
           Temperature: {temp_f}°F{" "}

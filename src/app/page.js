@@ -16,21 +16,25 @@ export default function Weather() {
 
   return (
     <div className="flex flex-wrap">
-      <div className="w-full md:w-1/2">
+      <div className="w-full md:w-1/3 pr-8 pl-4 pb-6">
         <SearchBar onSearch={handleSearch} className="mb-6" />
-        {weatherDataList.length > 0 ? (
-          weatherDataList.map((weatherData, index) => (
-            <ResultCard
-              key={index}
-              city={weatherData.location}
-              currentWeather={weatherData.current}
-            />
-          ))
-        ) : (
-          <p className="text-3xl text-slate-300">City Data will go here.</p>
-        )}
       </div>
-      <div className="w-full md:w-1/2">
+      <div className="w-full md:w-1/3 pr-8 pl-4">
+        <div>
+          {weatherDataList.length > 0 ? (
+            weatherDataList.map((weatherData, index) => (
+              <ResultCard
+                key={index}
+                city={weatherData.location}
+                currentWeather={weatherData.current}
+              />
+            ))
+          ) : (
+            <p className="text-3xl text-slate-300">Search Results Here 👇🏼.</p>
+          )}
+        </div>
+      </div>
+      <div className="w-full md:w-1/3 pr-8 pl-4">
         <section className="flex flex-col space-y-4">
           <CityCard city="San Antonio" />
           <CityCard city="Houston" />
