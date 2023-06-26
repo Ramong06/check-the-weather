@@ -5,7 +5,6 @@ import SearchBar from "./components/SearchBar";
 import { fetchData } from "@/utils/api";
 import ResultCard from "./components/ResultCard";
 import CityCard from "./components/CityCard";
-import PokeCards from "./components/PokeCards";
 import Link from "next/link";
 
 export default function Weather() {
@@ -18,6 +17,7 @@ export default function Weather() {
 
   return (
     <div>
+      <h1 className="text-2xl text-slate-100">Weather</h1>
       <nav className="flex justify-end">
         <Link
           type="submit"
