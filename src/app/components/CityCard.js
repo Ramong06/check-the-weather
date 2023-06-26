@@ -25,7 +25,7 @@ export default function CityCard({ city }) {
     }, [city]);
 
     if(!weather) {
-        return <p>LOADING...</p>
+        return <p className="text-2xl text-slate-100">LOADING...</p>
     }
 
     const { temp_f, wind_mph, humidity, precip_in } = weather.current;

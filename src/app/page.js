@@ -21,10 +21,10 @@ export default function Weather() {
       <nav className="flex justify-end">
         <Link
           type="submit"
-          className="bg-red-700 hover:bg-red-900 text-white px-4 py-2 rounded transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-opacity-50"
+          className="bg-slate-700 hover:bg-slate-900 text-slate-100 px-4 py-2 rounded transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-opacity-50"
           href="/pokedex"
         >
-          Pokedex
+          Pokedex 🐢
         </Link>
       </nav>
       <div className="flex flex-wrap mt-6">
@@ -42,7 +42,7 @@ export default function Weather() {
                 />
               ))
             ) : (
-              <p className="text-3xl text-slate-300">Search Results Here 👇🏼.</p>
+              <p className="text-3xl text-slate-100">Search Results Here 👇🏼.</p>
             )}
           </div>
         </div>
