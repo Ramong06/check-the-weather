@@ -9,4 +9,11 @@ The purpose of this app is to inform users on what the weather will be like in t
 
 ## API
 
-- Weather API
+- [Rapid API Weather](https://rapidapi.com/weatherapi/api/weatherapi-com)
+- [Poke API](https://pokeapi.co/)
+- [Pokemon Images](https://assets.pokemon.com/assets/cms2/img/pokedex)
+
+## Deployed Sites
+
+- [Weather/Pokedex Netlify](https://sweet-snickerdoodle-3f8362.netlify.app/)
+- [Weather/Pokedex Vercel](https://check-the-weather-three.vercel.app/)
