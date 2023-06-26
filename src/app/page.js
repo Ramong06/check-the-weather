@@ -42,7 +42,7 @@ export default function Weather() {
                 />
               ))
             ) : (
-              <p className="text-3xl text-slate-100">🚧 This page is currently under development, please continue to the Pokedex by clicking the "Pokedex" button at the top right 🚧.</p>
+              <p className="text-3xl text-slate-100">🚧 This page is currently under development, please continue to the Pokedex by clicking the Pokedex button at the top right 🚧.</p>
             )}
           </div>
         </div>
